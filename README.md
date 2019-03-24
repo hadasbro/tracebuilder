@@ -1,6 +1,6 @@
-**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
+**Trace Builder Master**
 
-When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
+This is Trace Builder class. Use it to accumulate informations on any controller's route, such as request, response, throwed exceptions, additional messages and more and then save accumulated result to Db or handle by any other way.
 
 *We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
 
