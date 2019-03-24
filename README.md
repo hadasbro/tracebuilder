@@ -38,7 +38,7 @@ Example 2:
 
         // package org.bitbucket.tracebuilder_b;
 
-        class A {
+        public class A {
             public void method(String[] args) {
 
                 TraceBuilder.INSTANCE
@@ -51,7 +51,7 @@ Example 2:
                         .request(args.toString())
                         .info("A::method", "info");
 
-                (new B()).method();
+                (new B()).methodb();
 
             }
         }
@@ -60,7 +60,7 @@ Example 2:
         // package org.bitbucket.tracebuilder_b;
 
         class B {
-            public void method() {
+            public void methodb() {
                 TraceBuilder.INSTANCE
                         .info("B::method", "info 2")
                         .exceptions(new Exception("Exception B::method"));
