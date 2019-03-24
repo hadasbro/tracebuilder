@@ -8,13 +8,13 @@ This is Trace Builder singleton. Use it to accumulate informations on any contro
 
 ## Install, include, add to your project
 
-Youâ€™ll start by editing this README file to learn how to edit a file in Bitbucket.
+You’ll start by editing this README file to learn how to edit a file in Bitbucket.
 
 1. Click **Source** on the left side.
 2. Click the README.md link from the list of files.
 3. Click the **Edit** button.
 4. Delete the following text: *Delete this line to make a change to the README from Bitbucket.*
-5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and youâ€™ll see the change you just made.
+5. After making your change, click **Commit** and then **Commit** again in the dialog. The commit page will open and you’ll see the change you just made.
 6. Go back to the **Source** page.
 
 ---
@@ -32,7 +32,7 @@ Example:
                 .request("My request as a string")
                 .response("My response as a string");
 				
-1. To set package to be considered in Trace Builder when any exception occure use
+1. To set **package** to be considered in Trace Builder when any exception occure use
 TraceBuilder::setTracePackage()
 TraceBuilder::setTracePackages()
 2. To add any **custom info message** use:
