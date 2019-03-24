@@ -21,6 +21,7 @@ Future: Project will be published in maven central.
 ## Usage
 
 Trace Builder is a singleton based on enum.
+
 Example:
 
         TraceBuilder tb = TraceBuilder.INSTANCE
@@ -33,6 +34,7 @@ Example:
 
 
 
+Example 2:
         package org.bitbucket.tracebuilder_b;
 
             class A {
@@ -62,7 +64,7 @@ Example:
                 }
             }
 
-            
+
 1. To set **package** to be considered in Trace Builder when any exception occure use
 TraceBuilder::setTracePackage()
 TraceBuilder::setTracePackages()
