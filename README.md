@@ -30,7 +30,39 @@ Example:
                 .info("i2","My test log 2")
                 .request("My request as a string")
                 .response("My response as a string");
-				
+
+
+
+        package org.bitbucket.tracebuilder_b;
+
+            class A {
+                public void method(String[] args) {
+                    TraceBuilder.INSTANCE
+                            .setTracePackages(new ArrayList<>(){{
+                                add("package org.bitbucket.tracebuilder_b");
+                                add("package org.bitbucket.tracebuilder_c");
+                            }})
+                            .request(args.toString())
+                            .info("A::method", "info");
+
+                    (new B()).method();
+                }
+            }
+
+
+            package org.bitbucket.tracebuilder_b;
+
+            class B {
+                public void method() {
+                    TraceBuilder.INSTANCE
+                            .info("B::method", "info 2")
+                            .exceptions(new Exception("Exception B::method"));
+
+                    DB.log(TraceBuilder.INSTANCE.toString());
+                }
+            }
+
+            
 1. To set **package** to be considered in Trace Builder when any exception occure use
 TraceBuilder::setTracePackage()
 TraceBuilder::setTracePackages()
