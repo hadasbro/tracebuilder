@@ -13,7 +13,7 @@ Include TB to your project
 1. Load source from Bitbucket.
 2. Add to your project
 
-Future: MProject will be published in maven central.
+Future: Project will be published in maven central.
 
 ---
 
