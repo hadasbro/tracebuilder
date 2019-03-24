@@ -1,12 +1,12 @@
 **Trace Builder Master**
 
-This is Trace Builder class. Use it to accumulate informations on any controller's route, such as request, response, throwed exceptions, additional messages and more and then save accumulated result to Db or handle by any other way.
+This is Trace Builder singleton. Use it to accumulate informations on any controller's route, such as request, response, throwed exceptions, additional messages and more and then save accumulated result to Db or handle by any other way.
 
-*We recommend that you open this README in another tab as you perform the tasks below. You can [watch our video](https://youtu.be/0ocf7u76WSo) for a full demo of all the steps in this tutorial. Open the video in a new tab to avoid leaving Bitbucket.*
+*Tracebuilder Autotests uses JUnit 4.12 *
 
 ---
 
-## Edit a file
+## Install, include, add to your project
 
 You’ll start by editing this README file to learn how to edit a file in Bitbucket.
 
@@ -19,17 +19,31 @@ You’ll start by editing this README file to learn how to edit a file in Bitbuc
 
 ---
 
-## Create a file
+## Usage
 
-Next, you’ll add a new file to this repository.
+Trace Builder is a singleton based on enum.
+Example:
 
-1. Click the **New file** button at the top of the **Source** page.
-2. Give the file a filename of **contributors.txt**.
-3. Enter your name in the empty file space.
-4. Click **Commit** and then **Commit** again in the dialog.
-5. Go back to the **Source** page.
+        TraceBuilder tb = TraceBuilder.INSTANCE
+                .setTracePackage("org.bitbucket.tracebuilder")
+                .exceptions(new Exception("Test exception"))
+                .info("i1","My test log 1")
+                .info("i2","My test log 2")
+                .request("My request as a string")
+                .response("My response as a string");
+				
+1. To set package to be considered in Trace Builder when any exception occure use
+TraceBuilder::setTracePackage()
+TraceBuilder::setTracePackages()
+2. To add any **custom info message** use:
+TraceBuilder::info()
+3. To add **request or response** as a string use:
+TraceBuilder::request()
+TraceBuilder::response()
+4. To get final, accumulated result use:
+TraceBuilder::toString()
 
-Before you move on, go ahead and explore the repository. You've already seen the **Source** page, but check out the **Commits**, **Branches**, and **Settings** pages.
+You can add as much info messages as you need, you can also specify the package which should considered when any exception throwed.
 
 ---
 
