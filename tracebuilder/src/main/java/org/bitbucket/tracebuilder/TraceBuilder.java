@@ -1,5 +1,7 @@
 package org.bitbucket.tracebuilder;
 
+import org.apache.commons.lang.builder.ToStringBuilder;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -212,15 +214,7 @@ public enum TraceBuilder {
      */
     @Override
     public String toString() {
-
-        return "TraceBuilder{" +
-                "request='" + request + '\'' +
-                ", response='" + response + '\'' +
-                ", all traces='" + trace + '\'' +
-                ", trace='" + this.getCurrentTrace() + '\'' +
-                ", exceptions=" + exceptions +
-                ", info=" + info +
-                '}';
+        return ToStringBuilder.reflectionToString(this);
     }
 
     /**

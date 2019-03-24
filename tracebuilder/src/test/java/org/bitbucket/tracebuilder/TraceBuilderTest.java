@@ -23,7 +23,6 @@ public class TraceBuilderTest {
         assertThat(tbString, CoreMatchers.containsString("test-request"));
         assertThat(tbString, CoreMatchers.containsString("test-response"));
 
-
     }
 
     @Test
