@@ -3,6 +3,7 @@
 This is Trace Builder singleton. Use it to accumulate informations on any controller's route, such as request, response, throwed exceptions, additional messages and more and then save accumulated result to Db or handle by any other way.
 
 *Tracebuilder Autotests uses JUnit 4.12 *
+*TraceBuilder::ToString uses ApacheCommons *
 
 ---
 
