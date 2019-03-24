@@ -34,42 +34,6 @@ Example:
 
 
 
-Example 2:
-
-        // package org.bitbucket.tracebuilder_b;
-
-        public class A {
-            public void method(String[] args) {
-
-                TraceBuilder.INSTANCE
-                        .setTracePackages(
-                            new ArrayList<>(){{
-                                add("package org.bitbucket.tracebuilder_b");
-                                add("package org.bitbucket.tracebuilder_c");
-                            }}
-                        )
-                        .request(args.toString())
-                        .info("A::method", "info");
-
-                (new B()).methodb();
-
-            }
-        }
-
-
-        // package org.bitbucket.tracebuilder_b;
-
-        class B {
-            public void methodb() {
-                TraceBuilder.INSTANCE
-                        .info("B::method", "info 2")
-                        .exceptions(new Exception("Exception B::method"));
-
-                DB.log(TraceBuilder.INSTANCE.toString());
-            }
-        }
-
-
 1. To set **package** to be considered in Trace Builder when any exception occure use
 TraceBuilder::setTracePackage()
 TraceBuilder::setTracePackages()
