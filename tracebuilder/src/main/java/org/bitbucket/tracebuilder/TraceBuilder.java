@@ -11,7 +11,13 @@ import java.util.stream.Collectors;
  * Builder Pattern
  *
  * usage:
- *
+ *  new TraceBuilder()
+ * 	.addTracePackage("org.bitbucket.tracebuilder")
+ * 	.addException(new Exception("Test exception tb2"))
+ * 	.addInfo("My test log tb2")
+ * 	.setRequest("Request tb2")
+ * 	.setResponse("Response tb2")
+ * 	.build();
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class TraceBuilder extends TraceBuilderConfig implements TraceBuilderInterface {

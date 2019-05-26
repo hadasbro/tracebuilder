@@ -44,7 +44,7 @@ Use as **singleton**:
                 
         // to string
         
-        TraceBuilder.INSTANCE
+        TraceBuilderSingleton.INSTANCE.toString();
 
 Use as normal object **(builder pattern)**:
         
