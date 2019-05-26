@@ -23,17 +23,44 @@ Future: Project will be published in maven central.
 
 Trace Builder is a singleton based on enum.
 
-Example:
+Use as **singleton**:
 
-        TraceBuilder tb = TraceBuilder.INSTANCE
-                .setTracePackage("org.bitbucket.tracebuilder")
-                .exceptions(new Exception("Test exception"))
-                .info("i1","My test log 1")
-                .info("i2","My test log 2")
-                .request("My request as a string")
-                .response("My response as a string");
+        // accumulating logs in TraceBuilderSingleton
 
+        TraceBuilderSingleton.INSTANCE
+                .addException(new Exception("Test exception"))
+                .addInfo("i1","test-log1")
+                .addInfo("i2","test-log2")
+                .setRequest("test-setRequest")
+                .setResponse("test-response")
+                .addTrace();
+        
+        // add more logs
+        
+        TraceBuilderSingleton.INSTANCE
+                .addException(new Exception("Another exception"))
+                .addInfo("Another info")
+                .addTrace();
+                
+        // to string
+        
+        TraceBuilder.INSTANCE
 
+Use as normal object **(builder pattern)**:
+        
+        // accumulating logs in TraceBuilder object
+
+        TraceBuilder tb = new TraceBuilder()
+            .addTracePackage("org.bitbucket.tracebuilder")
+            .addException(new Exception("Test exception tb2"))
+            .addInfo("My test log tb2")
+            .setRequest("Request tb2")
+            .setResponse("Response tb2")
+            .build();	
+            
+        // to string
+        
+        tb.toString();
 
 1. To set **package** to be considered in Trace Builder when any exception occure use
 TraceBuilder::setTracePackage()

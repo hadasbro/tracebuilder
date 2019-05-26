@@ -1,56 +1,30 @@
 package org.bitbucket.tracebuilder;
 
-import org.apache.commons.lang.builder.ToStringBuilder;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 /**
- * TraceBuilder singleton
+ * TraceBuilder
  *
- * this is an acumulator for requests, responses, exceptions etc.
- * you can use this class to store the request's data and then
- * save it to DB or to logs etc.
+ * Builder Pattern
  *
  * usage:
  *
- * TraceBuilder.INSTANCE
- *      .setTracePackage("org.bitbucket.tracebuilder")
- *      .exceptions(new Exception())
- *      .info("i1", "My info, log")
- *      .info("i1", "My log 2")
- *      .request("Request as a string")
- *      .response("Response as a string");
- *
- *  then you can log in acumulated result to DB or do whatever
- *
- *  DB.insert((String)TraceBuilder.INSTANCE);
- *
  */
 @SuppressWarnings({"unused", "WeakerAccess"})
-public enum TraceBuilder {
-
-    INSTANCE;
-
-    /**
-     * TRACE_LIMIT
-     */
-    final private int TRACE_LIMIT = 30;
+public class TraceBuilder extends TraceBuilderConfig implements TraceBuilderInterface {
 
     /**
      * trancePackages
      */
-    private ArrayList<String> trancePackages = new ArrayList<>(){{
-        add("java.lang");
+    private ArrayList<String> trancePackages = new ArrayList<>() {{
+        addAll(Arrays.asList(defaultPackagesToScan));
     }};
 
     /**
-     * String request
+     * String setRequest
      */
     private String request;
 
@@ -65,12 +39,12 @@ public enum TraceBuilder {
     private String trace;
 
     /**
-     * List<Exception> exceptions
+     * List<Exception> addException
      */
     private List<Exception> exceptions = new ArrayList<>();
 
     /**
-     * Map<String, String> info
+     * Map<String, String> addInfo
      */
     private Map<String, String> info = new HashMap<>();
 
@@ -80,11 +54,42 @@ public enum TraceBuilder {
     private AtomicInteger iCounter = new AtomicInteger(0);
 
     /**
+     * public no args constructor
+     */
+    public TraceBuilder() {}
+
+    /**
+     * private all args constructor
+     *
+     * @param trancePackages - trancePackages
+     * @param request - request
+     * @param response - response
+     * @param trace - trace
+     * @param exceptions - exceptions
+     * @param info - info
+     */
+    private TraceBuilder(
+            ArrayList<String> trancePackages,
+            String request,
+            String response,
+            String trace,
+            List<Exception> exceptions,
+            Map<String, String> info
+    ) {
+        this.trancePackages = trancePackages;
+        this.request = request;
+        this.response = response;
+        this.trace = trace;
+        this.exceptions = exceptions;
+        this.info = info;
+    }
+
+    /**
      * setTracePackages
      *
      * @param trancePackages - packages
      */
-    public TraceBuilder setTracePackages(ArrayList<String> trancePackages){
+    public TraceBuilder setTracePackages(ArrayList<String> trancePackages) {
         this.trancePackages = trancePackages;
         return this;
     }
@@ -95,7 +100,7 @@ public enum TraceBuilder {
      * @param trancePackage - package to scan
      * @return TraceBuilder
      */
-    public TraceBuilder setTracePackage(String trancePackage){
+    public TraceBuilder addTracePackage(String trancePackage) {
         this.trancePackages.add(trancePackage);
         return this;
     }
@@ -105,16 +110,16 @@ public enum TraceBuilder {
      *
      * @return String
      */
-    public String getCurrentTrace(){
+    public String getCurrentTrace() {
 
         Predicate<StackWalker.StackFrame> packageFiler = f -> {
 
-            if(trancePackages.isEmpty()) {
+            if (trancePackages.isEmpty()) {
                 return true;
             }
 
-            for(String pckg : trancePackages) {
-                if(f.getClassName().startsWith(pckg)){
+            for (String pckg : trancePackages) {
+                if (f.getClassName().startsWith(pckg)) {
                     return true;
                 }
             }
@@ -141,80 +146,37 @@ public enum TraceBuilder {
     }
 
     /**
-     * exceptions
+     * addException
      *
      * @param exception - exception
      * @return TraceBuilder
      */
-    public TraceBuilder exceptions(Exception exception){
+    public TraceBuilder addException(Exception exception) {
         this.exceptions.add(exception);
         return this;
     }
 
     /**
-     * info
+     * addInfo
      *
-     * @param info - info message
+     * @param info - addInfo message
      * @return TraceBuilder
      */
-    public TraceBuilder info(String info){
-        this.info.put("info#" + iCounter.incrementAndGet(), info);
+    public TraceBuilder addInfo(String info) {
+        this.info.put("Info#" + iCounter.incrementAndGet(), info);
         return this;
     }
 
     /**
-     * info
+     * addInfo
      *
-     * @param key - info key
-     * @param info - info message
+     * @param key  - addInfo key
+     * @param info - addInfo message
      * @return TraceBuilder
      */
-    public TraceBuilder info(String key, String info){
+    public TraceBuilder addInfo(String key, String info) {
         this.info.put(key, info);
         return this;
-    }
-
-    /**
-     * request
-     *
-     * @param request - request as a string
-     * @return TraceBuilder
-     */
-    public TraceBuilder request(String request){
-        this.request = request;
-        return this;
-    }
-
-    /**
-     * response
-     *
-     * @param response -response string
-     * @return TraceBuilder - response string
-     */
-    public TraceBuilder response(String response){
-        this.response = response;
-        return this;
-    }
-
-    /**
-     * trace
-     *
-     * @param trace - stack trace
-     * @return TraceBuilder
-     */
-    public TraceBuilder trace(String trace){
-        this.trace = trace;
-        return this;
-    }
-
-    /**
-     * toString
-     *
-     * @return String
-     */
-    @Override
-    public String toString() {
-        return ToStringBuilder.reflectionToString(this);
     }
 
     /**
@@ -231,8 +193,9 @@ public enum TraceBuilder {
      *
      * @param trancePackages - packages to scan
      */
-    public void setTrancePackages(ArrayList<String> trancePackages) {
+    public TraceBuilder setTrancePackages(ArrayList<String> trancePackages) {
         this.trancePackages = trancePackages;
+        return this;
     }
 
     /**
@@ -247,10 +210,11 @@ public enum TraceBuilder {
     /**
      * setRequest
      *
-     * @param request - request as string
+     * @param request - setRequest as string
      */
-    public void setRequest(String request) {
+    public TraceBuilder setRequest(String request) {
         this.request = request;
+        return this;
     }
 
     /**
@@ -267,8 +231,9 @@ public enum TraceBuilder {
      *
      * @param response - response as string
      */
-    public void setResponse(String response) {
+    public TraceBuilder setResponse(String response) {
         this.response = response;
+        return this;
     }
 
     /**
@@ -285,8 +250,9 @@ public enum TraceBuilder {
      *
      * @param trace - trace as string
      */
-    public void setTrace(String trace) {
+    public TraceBuilder setTrace(String trace) {
         this.trace = trace;
+        return this;
     }
 
     /**
@@ -301,27 +267,83 @@ public enum TraceBuilder {
     /**
      * setExceptions
      *
-     * @param exceptions - exceptions
+     * @param exceptions - addException
      */
-    public void setExceptions(List<Exception> exceptions) {
+    public TraceBuilder setExceptions(List<Exception> exceptions) {
         this.exceptions = exceptions;
+        return this;
+    }
+
+    /**
+     * addExceptions
+     *
+     * @param exception
+     * @return
+     */
+    public TraceBuilder addExceptions(Exception exception) {
+        this.exceptions.add(exception);
+        return this;
     }
 
     /**
      * getInfo
      *
-     * @return Map<String, String>
+     * @return Map<String ,   String>
      */
     public Map<String, String> getInfo() {
         return info;
     }
 
     /**
-     * setInfo
+     * addInfo
      *
-     * @param info - info as string
+     * @param info - addInfo as string
      */
-    public void setInfo(Map<String, String> info) {
+    public TraceBuilder addInfo(Map<String, String> info) {
         this.info = info;
+        return this;
     }
+
+    /**
+     * toString
+     *
+     * @return String
+     */
+    @Override
+    public String toString() {
+        return "TraceBuilder{" +
+                "request='" + request + '\'' +
+                ", response='" + response + '\'' +
+                ", trace='" + trace + '\'' +
+                ", exceptions=" + exceptions +
+                ", info=" + info +
+                '}';
+    }
+
+    /**
+     * addTrace
+     *
+     * @return
+     */
+    public TraceBuilder addTrace() {
+        return setTrace(getCurrentTrace());
+    }
+
+    /**
+     * build
+     *
+     * @return TraceBuilder
+     */
+    public TraceBuilder build() {
+
+        return new TraceBuilder(
+                trancePackages,
+                request,
+                response,
+                trace,
+                exceptions,
+                info
+        ).addTrace();
+    }
+
 }
