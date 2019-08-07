@@ -5,8 +5,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>tracebuilder</groupId>
+    <name>tracebuilder</name>
     <artifactId>tracebuilder</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
 
     <dependencies>
         <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
@@ -23,5 +24,21 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version>
+                <configuration>
+                    <doctitle>API for ${project.name} ${project.version}</doctitle>
+                    <windowtitle>API for ${project.name} ${project.version}</windowtitle>
+                    <testDoctitle>Test API for ${project.name} ${project.version}</testDoctitle>
+                    <testWindowtitle>Test API for ${project.name} ${project.version}</testWindowtitle>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

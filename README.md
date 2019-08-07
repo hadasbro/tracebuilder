@@ -1,7 +1,7 @@
 **Trace Builder Master**
 
 ![picture](https://img.shields.io/badge/Java-11.0.1-brightgreen.svg)
-![picture](https://img.shields.io/badge/junit-4.12-green.svg)
+![picture](https://img.shields.io/badge/jUnit-4.12-brightgreen)
 ![picture](https://img.shields.io/badge/Apache%20Commons-3.3.2-brightgreen.svg)
 ![picture](https://img.shields.io/badge/Design%20Patterns-Singleton-%238D75FF)
 
@@ -30,42 +30,46 @@ Trace Builder is a singleton based on enum.
 
 Use as **singleton**:
 
-        // accumulating logs in TraceBuilderSingleton
+```java
+// accumulating logs in TraceBuilderSingleton
 
-        TraceBuilderSingleton.INSTANCE
-                .addException(new Exception("Test exception"))
-                .addInfo("i1","test-log1")
-                .addInfo("i2","test-log2")
-                .setRequest("test-setRequest")
-                .setResponse("test-response")
-                .addTrace();
+TraceBuilderSingleton.INSTANCE
+        .addException(new Exception("Test exception"))
+        .addInfo("i1","test-log1")
+        .addInfo("i2","test-log2")
+        .setRequest("test-setRequest")
+        .setResponse("test-response")
+        .addTrace();
+
+// add more logs
+
+TraceBuilderSingleton.INSTANCE
+        .addException(new Exception("Another exception"))
+        .addInfo("Another info")
+        .addTrace();
         
-        // add more logs
-        
-        TraceBuilderSingleton.INSTANCE
-                .addException(new Exception("Another exception"))
-                .addInfo("Another info")
-                .addTrace();
-                
-        // to string
-        
-        TraceBuilderSingleton.INSTANCE.toString();
+// to string
+
+TraceBuilderSingleton.INSTANCE.toString();
+```
 
 Use as normal object **(builder pattern)**:
         
-        // accumulating logs in TraceBuilder object
+```java
+// accumulating logs in TraceBuilder object
 
-        TraceBuilder tb = new TraceBuilder()
-            .addTracePackage("org.bitbucket.tracebuilder")
-            .addException(new Exception("Test exception tb2"))
-            .addInfo("My test log tb2")
-            .setRequest("Request tb2")
-            .setResponse("Response tb2")
-            .build();	
-            
-        // to string
-        
-        tb.toString();
+TraceBuilder tb = new TraceBuilder()
+    .addTracePackage("org.bitbucket.tracebuilder")
+    .addException(new Exception("Test exception tb2"))
+    .addInfo("My test log tb2")
+    .setRequest("Request tb2")
+    .setResponse("Response tb2")
+    .build();	
+    
+// to string
+
+tb.toString();
+```
 
 1. To set **package** to be considered in Trace Builder when any exception occure use
 TraceBuilder::setTracePackage()
@@ -82,8 +86,9 @@ You can add as much info messages as you need, you can also specify the package 
 
 Insert to DB example:
 
-        DB.insert((String)TraceBuilder.INSTANCE);
-                
+```java
+DB.insert((String)TraceBuilder.INSTANCE);
+```                
 
 
 ---
