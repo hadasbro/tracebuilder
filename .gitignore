@@ -1,2 +1,5 @@
 .idea/
 tracebuilder/target
+out
+src
+tracebuilder/tracebuilder.iml
