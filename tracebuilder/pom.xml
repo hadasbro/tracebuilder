@@ -9,6 +9,11 @@
     <artifactId>tracebuilder</artifactId>
     <version>1.0.0</version>
 
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+    </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
         <dependency>
