@@ -283,8 +283,8 @@ public class TraceBuilder extends TraceBuilderConfig implements TraceBuilderInte
     /**
      * addExceptions
      *
-     * @param exception
-     * @return
+     * @param exception -
+     * @return TraceBuilder
      */
     public TraceBuilder addExceptions(Exception exception) {
         this.exceptions.add(exception);
@@ -329,7 +329,7 @@ public class TraceBuilder extends TraceBuilderConfig implements TraceBuilderInte
     /**
      * addTrace
      *
-     * @return
+     * @return TraceBuilder
      */
     public TraceBuilder addTrace() {
         return setTrace(getCurrentTrace());

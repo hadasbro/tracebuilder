@@ -132,7 +132,7 @@ public enum TraceBuilderSingleton implements TraceBuilderInterface{
     /**
      * addTrace
      *
-     * @return
+     * @return TraceBuilder
      */
     public TraceBuilder addTrace() {
         return traceBuilder.addTrace();

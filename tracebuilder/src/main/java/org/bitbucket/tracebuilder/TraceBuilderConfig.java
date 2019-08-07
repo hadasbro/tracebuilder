@@ -1,8 +1,5 @@
 package org.bitbucket.tracebuilder;
 
-import java.util.ArrayList;
-
-
 @SuppressWarnings({"unused", "WeakerAccess"})
 public abstract class TraceBuilderConfig {
 

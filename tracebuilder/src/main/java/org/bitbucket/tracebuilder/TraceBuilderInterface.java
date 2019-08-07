@@ -149,7 +149,8 @@ public interface TraceBuilderInterface {
 
     /**
      * addTrace
-     * @return
+     * 
+     * @return TraceBuilder
      */
     TraceBuilder addTrace();
 
