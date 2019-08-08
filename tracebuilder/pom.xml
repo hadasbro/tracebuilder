@@ -9,8 +9,9 @@
     <version>1.0.0</version>
 
     <properties>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <maven.compiler.source>1.8</maven.compiler.source>
+        <jdk.version>1.9</jdk.version>
+        <maven.compiler.target>1.9</maven.compiler.target>
+        <maven.compiler.source>1.9</maven.compiler.source>
     </properties>
 
     <name>${project.groupId}:${project.artifactId}</name>
@@ -74,6 +75,27 @@
                     <testWindowtitle>Test API for ${project.name} ${project.version}</testWindowtitle>
                 </configuration>
             </plugin>
+
+
+            <plugin>
+                <groupId>com.jolira</groupId>
+                <artifactId>onejar-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <mainClass>com.github.hadasbro.tracebuilder.Main</mainClass>
+                            <attachToBuild>true</attachToBuild>
+                            <filename>
+                                ${project.name}
+                            </filename>
+                        </configuration>
+                        <goals>
+                            <goal>one-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -138,5 +160,7 @@
             </build>
         </profile>
     </profiles>
-    
+
+
+
 </project>
