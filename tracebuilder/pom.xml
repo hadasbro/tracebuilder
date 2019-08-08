@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>github.hadasbro</groupId>
+    <groupId>com.github.hadasbro</groupId>
     <artifactId>tracebuilder</artifactId>
     <version>1.0.0</version>
 
@@ -12,10 +12,6 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
     </properties>
-
-
-
-
 
     <name>${project.groupId}:${project.artifactId}</name>
     <description>Pom</description>
@@ -56,18 +52,7 @@
         </repository>
     </distributionManagement>
 
-
-
-
-
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/commons-lang/commons-lang -->
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-        </dependency>
-
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
