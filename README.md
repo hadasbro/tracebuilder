@@ -1,4 +1,4 @@
-![picture](https://img.shields.io/badge/Java-11.0.1-brightgreen.svg)
+![picture](https://img.shields.io/badge/Java-11.0.1-green)
 ![picture](https://img.shields.io/badge/Design%20Patterns-Singleton-%238D75FF)
 
 **Trace Builder**
