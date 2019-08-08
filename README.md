@@ -1,17 +1,17 @@
-**Trace Builder Master**
-
 ![picture](https://img.shields.io/badge/Java-11.0.1-brightgreen.svg)
 ![picture](https://img.shields.io/badge/jUnit-4.12-brightgreen)
 ![picture](https://img.shields.io/badge/Apache%20Commons-3.3.2-brightgreen.svg)
 ![picture](https://img.shields.io/badge/Design%20Patterns-Singleton-%238D75FF)
 
-This is Trace Builder singleton. Use it to accumulate informations on any controller's route, such as request, response, throwed exceptions, additional messages and more and then save accumulated result to Db or handle by any other way.
+**Trace Builder**
+
+Zero dependency trace acumulator.
+
+This is Trace Builder library. Use it to accumulate informations on any controller's route, such as request, response, throwed exceptions, additional messages and more and then save accumulated result to Db or handle by any other way.
 
 *Tracebuilder Autotests uses JUnit 4.12*
 
 *TraceBuilder::ToString uses ApacheCommons*
-
----
 
 ## Install, include, add to your project
 
@@ -22,7 +22,6 @@ Include TB to your project
 
 Future: Project will be published in maven central.
 
----
 
 ## Usage
 
@@ -90,8 +89,6 @@ Insert to DB example:
 DB.insert((String)TraceBuilder.INSTANCE);
 ```                
 
-
----
 
 ## Additional info
 
