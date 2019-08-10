@@ -1,5 +1,6 @@
 ![picture](https://img.shields.io/badge/Java-11.0.1-green)
-![picture](https://img.shields.io/badge/Design%20Patterns-Singleton-%238D75FF)
+![picture](https://img.shields.io/badge/jUnit-4.12-green)
+![picture](https://img.shields.io/badge/Design%20Patterns-Singleton-%23FF9900)
 
 **Trace Builder**
 
@@ -9,12 +10,13 @@ This is Trace Builder library. Use it to accumulate informations on any controll
 
 ## Install, include, add to your project
 
-Include TB to your project
+Maven Repository
 
-1. Load source from Bitbucket.
-2. Add to your project
-
-Future: Project will be published in maven central.
+    <dependency>
+      <groupId>com.github.hadasbro</groupId>
+      <artifactId>tracebuilder</artifactId>
+      <version>1.0.1</version>
+    </dependency>
 
 
 ## Usage

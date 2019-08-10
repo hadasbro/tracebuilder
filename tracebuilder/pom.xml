@@ -6,7 +6,7 @@
 
     <groupId>com.github.hadasbro</groupId>
     <artifactId>tracebuilder</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1</version>
 
     <properties>
         <jdk.version>1.9</jdk.version>
