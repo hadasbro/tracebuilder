@@ -14,7 +14,7 @@
         <maven.compiler.source>1.9</maven.compiler.source>
     </properties>
 
-    <name>${project.groupId}:${project.artifactId}</name>
+    <name>Trace Builder</name>
     <description>Pom</description>
     <url>https://github.com/hadasbro/tracebuilder</url>
 
