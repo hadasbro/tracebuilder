@@ -91,7 +91,6 @@ DB.insert((String)TraceBuilder.INSTANCE);
 
 Trace deepth is settled to 30, so if you specify package, TB will be storing 30 last files from the trace.
 
----
 
 ## Authors
 
